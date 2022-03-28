@@ -1,0 +1,16 @@
+{
+  "exercises": [
+    {
+      "title": "Lorem Ipsum",
+      "details": "Lorem Ipsum",
+      "complete": true,
+      "id": 7581
+    },
+    {
+      "title": "Pushup",
+      "details": "Do pushups",
+      "complete": false,
+      "id": 997
+    }
+  ]
+}
