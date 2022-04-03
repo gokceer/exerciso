@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../styles/ExerciseItem.css";
 
 const ExerciseItem = (props) => {
@@ -36,6 +37,7 @@ const ExerciseItem = (props) => {
         <h4> {title} </h4>
         <div className="buttons">
           <button onClick={deleteExercise}>Delete</button>
+          <Link to={`/exercises/${props.exercise.id}/edit`}>Edit</Link>
           <button onClick={exerciseToggle}>Toggle</button>
         </div>
       </div>

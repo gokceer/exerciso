@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
+import BaseFilter from "../components/BaseFilter";
 import ExercisesList from "../components/ExercisesList";
 
 const HomePage = () => {
   const [exercises, setExercises] = useState([]);
+  const [currentFilter, setCurrentFilter] = useState("all");
+
+  const updateFilterHandler = (newFilter) => {
+    setCurrentFilter(newFilter);
+  };
 
   useEffect(() => {
     // fetch exercise data
@@ -37,12 +43,37 @@ const HomePage = () => {
     setExercises(clonedExercises);
   };
 
-  return (
+  let JSX = (
     <ExercisesList
       exercises={exercises}
       onDeleteExercise={deleteExerciseHandler}
       onToggleExercise={toggleExerciseHandler}
     />
+  );
+
+  if (currentFilter === "completed") {
+    JSX = (
+      <ExercisesList
+        exercises={exercises.filter((exercise) => exercise.complete)}
+        onDeleteExercise={deleteExerciseHandler}
+        onToggleExercise={toggleExerciseHandler}
+      />
+    );
+  } else if (currentFilter === "pending") {
+    JSX = (
+      <ExercisesList
+        exercises={exercises.filter((exercise) => !exercise.complete)}
+        onDeleteExercise={deleteExerciseHandler}
+        onToggleExercise={toggleExerciseHandler}
+      />
+    );
+  }
+
+  return (
+    <div>
+      <BaseFilter onUpdate={updateFilterHandler} />
+      {JSX}
+    </div>
   );
 };
 
